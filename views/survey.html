@@ -18,7 +18,8 @@
     <label for="usr">Name:</label>
     <input type="text" class="form-control" id="usr" name="name">
 </div>
-
+<!--*******Error Span*************** -->
+<span class="text-danger">{{@errors.nameErr}}</span><br>
 <p>Check all that apply</p>
 <!--Use set array to build indoor buttons-->
 <repeat group="{{ @question }}"
@@ -31,6 +32,8 @@
         </label>
     </div>
 </repeat>
+    <!--*******Error Span*************** -->
+    <span class="text-danger">{{@errors.checkErr}}</span><br>
     <button type="submit">Submit</button>
 </form>
 
