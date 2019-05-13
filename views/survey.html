@@ -13,10 +13,10 @@
 
 <body>
 <h1>Midterm Survey</h1>
-<form action="summary" method="post">
+<form action="" method="post">
 <div>
     <label for="usr">Name:</label>
-    <input type="text" class="form-control" id="usr">
+    <input type="text" class="form-control" id="usr" name="name">
 </div>
 
 <p>Check all that apply</p>
@@ -25,7 +25,7 @@
         key="{{ @key }}"
         value="{{ @value }}">
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="questions[]">
+        <input class="form-check-input" type="checkbox" value="{{@value}}" id="defaultCheck1" name="questions[]">
         <label class="form-check-label" for="defaultCheck1">
             {{@value}}
         </label>

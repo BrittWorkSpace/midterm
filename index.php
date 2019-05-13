@@ -26,6 +26,31 @@ $f3->route('GET /', function ()
 }
 );
 
+$f3->route('GET|POST /survey', function ($f3)
+{
+    $questions = array('question1' => "This midterm is easy", 'questions2'=>'I like midterms', 'question3' =>
+        'Today is monday');
+    $f3->set('question', $questions);
+
+    if($_SERVER['REQUEST_METHOD'] =='POST') {
+        $_SESSION[name] = $_POST['name'];
+        $_SESSION['checkboxes'] = $_POST['questions'];
+
+        $f3->reroute('summary');
+    }
+    $view = new Template();
+    echo $view->render('views/survey.html');
+}
+);
+
+
+$f3->route('GET /summary', function ($f3)
+{
+    $view = new Template();
+    echo $view->render('views/summary.html');
+}
+);
+
 //run fat free
 $f3->run();
 ?>
