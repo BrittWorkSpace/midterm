@@ -16,6 +16,9 @@ require_once('vendor/autoload.php');
 //create an instance of the base class
 $f3 = Base::instance();
 
+//require validation page
+require_once('model/validate.php');
+
 //session starts
 session_start();
 
@@ -33,11 +36,23 @@ $f3->route('GET|POST /survey', function ($f3)
     $f3->set('question', $questions);
 
     if($_SERVER['REQUEST_METHOD'] =='POST') {
-        $_SESSION[name] = $_POST['name'];
-        $_SESSION['checkboxes'] = $_POST['questions'];
 
-        $f3->reroute('summary');
+
+        $arrayErr=array(
+            "nameErr"=>checkIfEmpty($_POST['name']),
+            "checkErr"=>checkArrayEmpty($_POST['questions']) );
+
+        //check error array is empty re-reoute to next page
+        if(checkErrArray($arrayErr))
+        {
+            $_SESSION[name] = $_POST['name'];
+            $_SESSION['checkboxes'] = $_POST['questions'];
+
+            $f3->reroute('summary');
+        }
     }
+
+    $f3->set('errors', $arrayErr);
     $view = new Template();
     echo $view->render('views/survey.html');
 }
