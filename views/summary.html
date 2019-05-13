@@ -8,13 +8,15 @@
     <title>Summary</title>
 </head>
 <body>
-    <h1>Confirmation Page</h1>
-    <p>Your name is {{@SESSION.name}}</p>
-    <h2>You answered</h2>
+    <h1>Midterm Survey</h1>
+    <h2>Thank you for taking the survey, {{@SESSION.name}}!</h2>
+    <h3>Your answers:</h3>
+    <p>
     <repeat group="{{ @SESSION.checkboxes }}"
             key="{{ @key }}"
             value="{{ @value }}">
-        <p>{{@value}}</p>
+        {{@value}}.
     </repeat>
+    </p>
 </body>
 </html>
